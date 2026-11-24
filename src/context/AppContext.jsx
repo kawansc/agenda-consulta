@@ -12,6 +12,8 @@ export function AppProvider({ children }) {
   const [screen, setScreen] = useState("home");
   const [query, setQuery] = useState("");
   const [presencial, setPresencial] = useState(true);
+  const [convenio, setConvenio] = useState(false);
+  const [sort, setSort] = useState("disp");
   const [draft, setDraft] = useState(null);
   const [appts, setAppts] = useState([]);
   const [history, setHistory] = useState([]);
@@ -53,7 +55,7 @@ export function AppProvider({ children }) {
   const go = s => { setScreen(s); setModal(null); };
   const startBooking = (doc, extra = {}) => {
     const day = extra.day || doc.next;
-    setDraft({ docId: doc.id, mode: "Presencial", day, vm: new Date(day.getFullYear(), day.getMonth(), 1), time: null, replaceId: null, ...extra });
+    setDraft({ docId: doc.id, mode: presencial ? "Presencial" : "Teleconsulta", day, vm: new Date(day.getFullYear(), day.getMonth(), 1), time: null, replaceId: null, ...extra });
     go("schedule");
   };
   const reschedule = a => startBooking(byId(a.docId), { mode: a.mode, day: a.day, time: a.time, replaceId: a.id });
@@ -83,6 +85,10 @@ export function AppProvider({ children }) {
     setQuery,
     presencial,
     setPresencial,
+    convenio,
+    setConvenio,
+    sort,
+    setSort,
     draft,
     setDraft,
     appts,

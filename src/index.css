@@ -5,9 +5,8 @@
 html,body{height:100%;margin:0}
 body{background:var(--page);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;justify-content:center}
 button{font:inherit;color:inherit;cursor:pointer}
-#root{width:100%;max-width:430px;height:100%}
+#root{width:100%;height:100vh;height:100dvh}
 .shell{height:100%;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
-@media(min-width:600px){#root{height:min(900px,100%);align-self:center}.shell{border:1px solid var(--line);border-radius:28px}}
 .scroll{flex:1;overflow-y:auto;padding:20px 24px 24px}
 .top{display:flex;align-items:center;gap:14px;margin-bottom:6px}
 .top h1{font-size:22px;margin:0;font-weight:700}
@@ -78,3 +77,48 @@ h3{font-size:18px;margin:26px 0 12px;font-weight:700}
 @keyframes sp{to{transform:rotate(360deg)}}
 .time:disabled{opacity:.35;cursor:default}
 .nav[hidden]{display:none}
+
+/* ---------- Responsivo ---------- */
+.page{max-width:var(--w,560px);margin:0 auto}
+.s-search,.s-appts,.s-schedule{--w:1040px}
+.s-home{--w:920px}
+.s-profile{--w:640px}
+.s-login{--w:420px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:14px}
+.cards .card{margin:0}
+.brand{display:none}
+.sched-r{min-width:0}
+.field,.search input{font-size:16px}
+
+/* tablet e celular grande: sem moldura, conteúdo centralizado */
+@media(min-width:600px){
+  .scroll{padding:28px 32px 32px}
+  .nav{justify-content:center}
+  .nav button{max-width:200px}
+  .modal{align-items:center;justify-content:center}
+  .sheet{max-width:440px;border-radius:20px}
+}
+
+/* computador: menu lateral */
+@media(min-width:960px){
+  .shell{flex-direction:row}
+  .nav{order:-1;flex-direction:column;justify-content:flex-start;gap:8px;width:250px;flex:none;border-top:0;border-right:1px solid var(--line);padding:28px 16px}
+  .nav button{flex:none;max-width:none;width:100%;flex-direction:row;justify-content:flex-start;gap:12px;padding:12px 14px;font-size:15px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;padding:2px 14px 24px}
+  .scroll{padding:44px 48px 48px}
+  .sched{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .sched-r h3{margin-top:0!important}
+  .s-login .page{padding-top:8vh}
+}
+
+/* telas baixas (celular deitado) */
+@media(max-height:480px) and (orientation:landscape){.nav button{flex-direction:row;justify-content:center;gap:8px;padding:6px 0}}
+
+/* botões: sem aro branco ao clicar; aro visível só no teclado */
+button:focus{outline:none}
+button:focus-visible,.field:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.chips{flex-wrap:wrap}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.note-item{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:4px}
+.note-item span{font-size:13px;color:var(--muted)}
+@media(min-width:960px){.cards{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}}

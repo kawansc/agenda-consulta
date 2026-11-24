@@ -10,7 +10,7 @@ export default function Home() {
   return (<>
     <div className="row" style={{ marginBottom: 4 }}>
       <div className="top" style={{ marginBottom: 0 }}><Icon n="plus" s={24} /><h1 style={{ fontSize: 24 }}>Healthup</h1></div>
-      <button className="ic" aria-label="Notificações"><Icon n="bell" /></button>
+      <button className="ic" aria-label="Notificações" onClick={() => setModal({ type: "notifs" })}><Icon n="bell" /></button>
     </div>
     <p className="eyebrow">Cuidado com a sua saúde</p>
     <h2 style={{ fontSize: 28 }}>Olá, {user.name.split(" ")[0]}</h2>

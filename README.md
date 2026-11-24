@@ -3,6 +3,9 @@
 App de agendamento de consultas feito com **React + Vite**. Os dados (contas e consultas) ficam salvos em um
 **banco de dados local no próprio navegador**, então não precisa de servidor, internet nem instalar banco.
 
+O layout é **responsivo**: no celular usa menu inferior e tela cheia; no tablet centraliza o conteúdo; no computador
+(a partir de 960 px) mostra menu lateral, cartões em grade e o calendário ao lado dos horários.
+
 Funciona assim: login/cadastro, busca de médicos, calendário que usa a data do seu computador (não deixa marcar dias
 que já passaram), revisão, pagamento **simulado** (Pix ou cartão) e "Minhas consultas" com reagendar e cancelar.
 

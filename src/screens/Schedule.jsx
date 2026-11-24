@@ -30,6 +30,7 @@ export default function Schedule() {
     <div className="seg">{["Presencial","Teleconsulta"].map(m => (
       <button key={m} className={"chip" + (draft.mode === m ? " on" : "")} style={{ height: 40, fontSize: 14 }} onClick={() => setDraft({ ...draft, mode: m })}>{m}</button>
     ))}</div>
+    <div className="sched">
     <div className="cal">
       <div className="cal-h"><button className="ic" aria-label="Mês anterior" disabled={!canPrev} style={{ opacity: canPrev ? 1 : .3, fontSize: 20 }} onClick={() => mv(-1)}>‹</button><span>{MONL[vm.getMonth()]} {vm.getFullYear()}</span><button className="ic" aria-label="Próximo mês" style={{ fontSize: 20 }} onClick={() => mv(1)}>›</button></div>
       <div className="grid7">
@@ -40,11 +41,13 @@ export default function Schedule() {
       </div>
       <p className="hint">{fs(draft.day)} selecionado · Datas anteriores a hoje ficam indisponíveis</p>
     </div>
+    <div className="sched-r">
     <h3 style={{ fontSize: 16, margin: "20px 0 0" }}>{WD[dow(draft.day)]}, {draft.day.getDate()} de {MONL[draft.day.getMonth()].toLowerCase()}</h3>
     <div className="times">{TIMES.map(t => (
       <button key={t} disabled={!slots.includes(t)} className={"time" + (draft.time === t ? " on" : "")} onClick={() => setDraft({ ...draft, time: t })}>{t}</button>
     ))}</div>
     <div className="price"><span>Consulta particular</span><b>{brl(d.price)}</b></div>
     <button className="btn pri" style={{ height: 50 }} disabled={!draft.time} onClick={() => go("review")}>Continuar</button>
+    </div></div>
   </>);
 }

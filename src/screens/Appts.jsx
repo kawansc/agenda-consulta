@@ -11,7 +11,7 @@ export default function Appts() {
       <button className={"chip" + (tab === "next" ? " on" : "")} style={{ height: 40, fontSize: 14 }} onClick={() => setTab("next")}>Próximas</button>
       <button className={"chip" + (tab === "past" ? " on" : "")} style={{ height: 40, fontSize: 14 }} onClick={() => setTab("past")}>Anteriores</button>
     </div>
-    {tab === "past" ? (history.length === 0 ? <div className="empty">Nenhuma consulta anterior.</div> : history.map(a => {
+    {tab === "past" ? (history.length === 0 ? <div className="empty">Nenhuma consulta anterior.</div> : <div className="cards">{history.map(a => {
       const d = byId(a.docId);
       return (
         <div className="card" key={a.id}>
@@ -19,10 +19,10 @@ export default function Appts() {
           <div className="doc" style={{ marginBottom: 0 }}><div className="avatar">{d.ini}</div><div><b>{d.name}</b><span>{d.spec} · {a.mode}</span></div></div>
         </div>
       );
-    })) : (<>
+    })}</div>) : (<>
       <h2 style={{ fontSize: 22, marginBottom: 14 }}>Agendamentos</h2>
       {upcoming.length === 0 && <div className="empty">Você não tem consultas futuras.</div>}
-      {upcoming.map(a => {
+      <div className="cards">{upcoming.map(a => {
         const d = byId(a.docId);
         return (
           <div className="card" key={a.id}>
@@ -34,7 +34,7 @@ export default function Appts() {
               : <div className="two"><button className="btn sm" onClick={() => reschedule(a)}>Reagendar</button><button className="btn sm" onClick={() => setModal({ type: "cancel", id: a.id })}>Cancelar</button></div>}
           </div>
         );
-      })}
+      })}</div>
     </>)}
     <button className="btn pri" style={{ height: 50, marginTop: 4 }} onClick={() => { setQuery(""); go("search"); }}>Agendar nova consulta</button>
   </>);

@@ -1,8 +1,12 @@
 import { useApp } from "../context/AppContext";
 import { fs } from "../utils/dates";
+import FiltersSheet from "./FiltersSheet";
+import NotifsSheet from "./NotifsSheet";
 
 export default function Modal() {
   const { appts, modal, setModal, reschedule, cancel, byId } = useApp();
+  if (modal.type === "filters") return <FiltersSheet />;
+  if (modal.type === "notifs") return <NotifsSheet />;
   const a = appts.find(x => x.id === modal.id);
   if (!a) return null;
   const d = byId(a.docId);
